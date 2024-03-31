@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundcolor"
+    tools:context=".OrderConfirmedActivity">
+    <TextView
+        android:id="@+id/textViewLabTestName"
+        android:layout_width="266dp"
+        android:layout_height="57dp"
+        android:text="24*7 Healthcare"
+        android:textColor="@color/purple_200"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.558"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <TextView
+        android:id="@+id/textViewOrderConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="384dp"
+        android:text="Appointment"
+        android:textColor="@color/yellowLight"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewLabTestName"
+        app:layout_constraintVertical_bias="0.032" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/orderConfirm"
+        android:layout_width="11036dp"
+        android:layout_height="180dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewOrderConfirm"
+        app:layout_constraintVertical_bias="0.022"
+        app:lottie_autoPlay="true"
+
+        app:lottie_rawRes="@raw/orderconfirmed" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="372dp"
+        android:layout_height="440dp"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill"
+        app:cardBackgroundColor="#405D94C3"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="10dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/orderConfirm"
+        app:layout_constraintVertical_bias="0.121">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your Appointment"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_marginTop="30dp"
+            />
+        <EditText
+            android:id="@+id/editTextDCname"
+            android:layout_width="313dp"
+            android:layout_height="49dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="65dp"
+            android:editable="false"
+            android:hint="Doctor Name"
+            android:paddingLeft="5dp"
+            android:drawableLeft="@drawable/ic_baseline_person_24" />
+        <EditText
+            android:id="@+id/editTextDCAddress"
+            android:layout_width="313dp"
+            android:layout_height="49dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="115dp"
+            android:hint="Address"
+            android:paddingLeft="5dp"
+            android:editable="false"
+            android:drawableLeft="@drawable/ic_baseline_security_24" />
+
+        <EditText
+            android:id="@+id/editTextDCMobileNo"
+            android:layout_width="313dp"
+            android:layout_height="49dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="170dp"
+            android:layout_marginRight="20dp"
+            android:drawableLeft="@drawable/ic_baseline_email_24"
+            android:hint="Doctor Mobile Number"
+            android:editable="false"
+
+            android:paddingLeft="5dp" />
+
+        <EditText
+            android:id="@+id/editTextDCPrice"
+            android:layout_width="313dp"
+            android:layout_height="49dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="220dp"
+            android:layout_marginRight="20dp"
+            android:drawableLeft="@drawable/ic_baseline_shopping_cart_24"
+            android:editable="false"
+            android:hint="Price"
+
+            android:paddingLeft="5dp" />
+        <EditText
+            android:id="@+id/editTextDCDate"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="280dp"
+            android:layout_marginRight="20dp"
+            android:editable="false"
+            android:hint="Doctor Mobile Number"
+
+            android:paddingLeft="5dp" />
+        <EditText
+            android:id="@+id/editTextDCTime"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="280dp"
+            android:layout_marginRight="20dp"
+
+            android:editable="false"
+            android:hint="Doctor Mobile Number"
+
+            android:paddingLeft="5dp" />
+
+        <Button
+            android:id="@+id/buttonDCBack"
+            android:layout_width="313dp"
+            android:layout_height="58dp"
+            android:text="Back"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="330dp"
+            android:layout_marginRight="20dp"
+
+            />
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
