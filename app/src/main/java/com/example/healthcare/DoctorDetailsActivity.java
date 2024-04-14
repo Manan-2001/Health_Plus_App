@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ import java.util.HashMap;
 public class DoctorDetailsActivity extends AppCompatActivity {
 
 
+    SearchView searchView;
 //    Only uses hardcode value instead of using database
     private String[][] doctor_details1={
             {"Doctor Name: Dr.Manan Jain", "Hospital Address: Pimpri", "Exp : 5yrs", "Mobile No:9898989898", "608"},
@@ -93,7 +95,9 @@ SimpleAdapter sa;
         String title=it.getStringExtra("title");
         tv.setText(title);
 
-//        condition for categories vise component data
+
+
+        //        condition for categories vise component data
 
 
         if (title != null) {
@@ -148,6 +152,22 @@ SimpleAdapter sa;
                 it.putExtra("text4",doctor_details[i][3]);
                 it.putExtra("text5",doctor_details[i][4]);
                 startActivity(it);
+            }
+        });
+
+        searchView=findViewById(R.id.serachView);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                sa.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                sa.getFilter().filter(newText);
+                return false;
             }
         });
     }

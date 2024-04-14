@@ -15,12 +15,20 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class BookAppointmentActivity extends AppCompatActivity {
+
+    List<String> bookedDates = new ArrayList<>();
+    List<String> bookedTime = new ArrayList<>();
 
     EditText ed1,ed2,ed3,ed4;
     TextView tv;
@@ -89,6 +97,26 @@ public class BookAppointmentActivity extends AppCompatActivity {
         });
 
 
+        DatabaseReference bookedDatesRef = FirebaseDatabase.getInstance().getReference().child("BookApointment");
+        bookedDatesRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                bookedDates.clear();
+                bookedTime.clear();// Clear the existing list
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    BookingDetail_Database bookingDetail = snapshot.getValue(BookingDetail_Database.class);
+                    if (bookingDetail != null) {
+                        bookedDates.add(bookingDetail.getDate());
+                        bookedTime.add(bookingDetail.getTime());
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle error
+            }
+        });
 
 
 //        database acitvity
@@ -98,16 +126,21 @@ public class BookAppointmentActivity extends AppCompatActivity {
         btnBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                insertBookingDetailsData();
-                Toast.makeText(getApplicationContext(), "Appointment Booked", Toast.LENGTH_SHORT).show();
-                Intent it=new Intent(BookAppointmentActivity.this,OppointmentSuccessfullActivity.class);
-                it.putExtra("fullname",ed1.getText().toString());
-                it.putExtra("address",ed2.getText().toString());
-                it.putExtra("contact",ed3.getText().toString());
-                it.putExtra("fees",ed4.getText().toString());
-                it.putExtra("date",selectedDate);
-                it.putExtra("time",selectedTime);
-                startActivity(it);
+                if (bookedDates.contains(selectedDate) && bookedTime.contains(selectedTime)){
+                      Toast.makeText(getApplicationContext(),"Selected Date is Not available. Select anathor date or time...",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    insertBookingDetailsData();
+                    Toast.makeText(getApplicationContext(), "Appointment Booked", Toast.LENGTH_SHORT).show();
+                    Intent it=new Intent(BookAppointmentActivity.this,OppointmentSuccessfullActivity.class);
+                    it.putExtra("fullname",ed1.getText().toString());
+                    it.putExtra("address",ed2.getText().toString());
+                    it.putExtra("contact",ed3.getText().toString());
+                    it.putExtra("fees",ed4.getText().toString());
+                    it.putExtra("date",selectedDate);
+                    it.putExtra("time",selectedTime);
+                    startActivity(it);
+                }
             }
         });
 
